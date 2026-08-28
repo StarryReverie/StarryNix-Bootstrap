@@ -1,5 +1,5 @@
 let
-  lockFile = builtins.fromJSON (builtins.readFile ./flake/dev/flake.lock);
+  lockFile = builtins.fromJSON (builtins.readFile ./flake/flake.lock);
   flakeCompatNode = lockFile.nodes.${lockFile.nodes.root.inputs.flake-compat}.locked;
   flakeCompatSrc = builtins.fetchTarball {
     url =
@@ -24,7 +24,7 @@ let
 
   flake = flakeCompat (
     {
-      src = ../.;
+      src = ./flake;
     }
     // (optionalArgValue "copySourceTreeToStore" false)
     // (optionalArgValue "useBuiltinsFetchTree" true)
