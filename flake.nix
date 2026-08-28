@@ -2,10 +2,6 @@
   description = "StarryNix-Bootstrap";
 
   inputs = {
-    flake-compat = {
-      url = "https://git.lix.systems/lix-project/flake-compat/archive/main.tar.gz";
-    };
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts/main";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -26,5 +22,23 @@
         "aarch64-darwin"
       ];
 
+      imports = [
+        inputs.flake-parts.flakeModules.partitions
+        ./nix/flake
+      ];
+
+      partitions = {
+        dev = {
+          module = ./nix/flake/dev;
+          extraInputsFlake = ./nix/flake/dev;
+        };
+      };
+
+      partitionedAttrs = {
+        checks = "dev";
+        devShells = "dev";
+        formatter = "dev";
+        inputsDev = "dev";
+      };
     };
 }
