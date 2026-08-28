@@ -1,8 +1,6 @@
 { config, inputs, ... }:
 {
-  imports = [
-    ./templates.nix
-  ];
+  imports = [ ];
 
   perSystem =
     { system, ... }:

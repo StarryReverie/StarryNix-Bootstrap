@@ -1,16 +1,16 @@
 { config, inputs, ... }:
 {
   imports = [
-    ./templates.nix
+    ./devshell.nix
   ];
 
   perSystem =
     { system, ... }:
     {
-      _module.args.pkgs = import inputs.nixpkgs {
+      _module.args.pkgsDev = import inputs.nixpkgs {
         inherit system;
       };
     };
 
-  flake.inputs = inputs;
+  flake.inputsDev = inputs;
 }
