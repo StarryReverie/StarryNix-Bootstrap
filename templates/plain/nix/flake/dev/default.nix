@@ -5,11 +5,9 @@
   ];
 
   perSystem =
-    { system, ... }:
+    { system, pkgs, ... }:
     {
-      _module.args.pkgsDev = import inputs.nixpkgs {
-        inherit system;
-      };
+      _module.args.pkgsDev = pkgs;
     };
 
   flake.inputsDev = inputs;
