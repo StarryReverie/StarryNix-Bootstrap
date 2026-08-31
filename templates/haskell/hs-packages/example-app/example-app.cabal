@@ -1,0 +1,20 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.38.3.
+--
+-- see: https://github.com/sol/hpack
+
+name:           example-app
+version:        0.1.0.0
+build-type:     Simple
+
+executable example-app
+  main-is: Main.hs
+  other-modules:
+      Paths_example_app
+  hs-source-dirs:
+      app
+  build-depends:
+      base
+    , example-lib
+  default-language: GHC2024

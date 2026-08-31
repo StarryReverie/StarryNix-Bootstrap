@@ -1,0 +1,9 @@
+name: example-lib
+version: 0.1.0.0
+
+language: GHC2024
+dependencies:
+  - base
+
+library:
+  source-dirs: src
