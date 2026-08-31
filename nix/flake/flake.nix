@@ -26,7 +26,7 @@
       systems = import inputs.systems;
 
       imports = [
-        ./devshell.nix
+        ./devshells.nix
       ];
     };
 }

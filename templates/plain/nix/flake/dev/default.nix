@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 {
   imports = [
-    ./devshell.nix
+    ./devshells.nix
   ];
 
   perSystem =
