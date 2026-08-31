@@ -15,9 +15,6 @@ let
       entryNames = builtins.attrNames dirTypeEntries;
     in
     entryNames;
-in
-{
-  inherit haskellPkgs;
 
   internalPkgs =
     let
@@ -73,4 +70,9 @@ in
         exportPkgs extendedFullPkgs;
     in
     exportedPkgs;
+in
+{
+  inherit haskellPkgs internalPkgs;
+
+  example-app = haskellLib.justStaticExecutables internalPkgs.example-app;
 }
