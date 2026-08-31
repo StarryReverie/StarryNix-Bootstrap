@@ -5,5 +5,26 @@ language: GHC2024
 dependencies:
   - base
 
+flags:
+  in-nix-shell:
+    description: Build tools are provided by the Nix development shell.
+    default: false
+    manual: true
+
 library:
   source-dirs: src
+
+tests:
+  test:
+    source-dirs: test
+    main: Spec.hs
+    dependencies:
+      - example-lib
+      - hedgehog
+      - tasty
+      - tasty-hedgehog
+      - tasty-hunit
+    when:
+      - condition: "!flag(in-nix-shell)"
+        build-tools:
+          - tasty-discover:tasty-discover

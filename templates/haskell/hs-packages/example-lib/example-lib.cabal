@@ -8,6 +8,11 @@ name:           example-lib
 version:        0.1.0.0
 build-type:     Simple
 
+flag in-nix-shell
+  description: Build tools are provided by the Nix development shell.
+  manual: True
+  default: False
+
 library
   exposed-modules:
       ExampleLib
@@ -18,3 +23,23 @@ library
   build-depends:
       base
   default-language: GHC2024
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      ExampleLibTest
+      Paths_example_lib
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , example-lib
+    , hedgehog
+    , tasty
+    , tasty-hedgehog
+    , tasty-hunit
+  default-language: GHC2024
+  if !flag(in-nix-shell)
+    build-tool-depends:
+        tasty-discover:tasty-discover
