@@ -47,3 +47,13 @@ You may need to replace the following placeholder:
 - `<PROJECT>`: The name of the project.
 - `example-lib`: An example Haskell package consists of a library and a test suite.
 - `example-app`: An example Haskell package consists of an executable, which depends on `example-lib`.
+
+### Pin Dependencies for Non-Nix Users
+
+Since Nix manages Haskell dependencies, non-Nix users may not known the these dependencies' exact versions. To ensure reproducibility, run the following commands to pin all dependencies:
+
+```sh
+cabal v2-freeze
+```
+
+It generates `cabal.project.freeze` in the project root. Make sure to check it into your version control system.
