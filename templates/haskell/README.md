@@ -14,6 +14,8 @@ You can consume this project via flake outputs `packages` and `legacyPackages`. 
 
 If you don't want to use flake, you can directly import [`package-set.nix`](./nix/package-set.nix) to get the same attrsets.
 
+A [justfile](./justfile) is also provided, you can use it to generate `<package>.cabal` or `package.nix` for all packages.
+
 ## Deployment
 
 ### Initialize the Flake

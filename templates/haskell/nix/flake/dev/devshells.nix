@@ -29,6 +29,8 @@
 
           pkgsDev.nixfmt
           pkgsDev.treefmt
+
+          pkgsDev.just
         ];
 
         withHoogle = true;
