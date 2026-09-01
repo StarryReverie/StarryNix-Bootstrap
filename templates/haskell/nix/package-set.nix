@@ -20,25 +20,13 @@ let
     let
       pair = name: value: { inherit name value; };
 
-      makePackageSource =
-        name:
-        (lib.fileset.toSource {
-          root = rootDir;
-          fileset = lib.fileset.unions [
-            (rootDir + /hs-packages/${name}/package.yaml)
-            (lib.fileset.maybeMissing (rootDir + /hs-packages/${name}/app))
-            (lib.fileset.maybeMissing (rootDir + /hs-packages/${name}/src))
-            (lib.fileset.maybeMissing (rootDir + /hs-packages/${name}/test))
-          ];
-        });
-
       makePackage =
         hpkgs: name:
         if builtins.pathExists (rootDir + /hs-packages/${name}/package.nix) then
           hpkgs.callPackage (rootDir + /hs-packages/${name}/package.nix) { }
         else
           let
-            src = makePackageSource name;
+            src = import (rootDir + /nix/lib/make-package-source.nix) { inherit lib name; };
             cabal2nixOpts = {
               extraCabal2nixOptions = "--subpath 'hs-packages/${name}'";
               srcModifier = lib.id;
