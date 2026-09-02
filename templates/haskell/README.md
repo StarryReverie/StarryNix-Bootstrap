@@ -76,6 +76,12 @@ just hpack
 just cabal2nix
 ```
 
+### Start Local Hoogle Instance
+
+```sh
+just hoogle
+```
+
 ### Build Executable for Production
 
 With flake:

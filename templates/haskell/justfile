@@ -16,3 +16,5 @@ cabal2nix:
       > ./hs-packages/$entry/package.nix
   done
 
+hoogle:
+  @hoogle server --local --port 8080
