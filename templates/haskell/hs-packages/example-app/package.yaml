@@ -1,7 +1,10 @@
+_common: !include ../../package.common.yaml
+<<: *common
+<<: *flags
+
 name: example-app
 version: 0.1.0.0
 
-language: GHC2024
 dependencies:
   - base
 

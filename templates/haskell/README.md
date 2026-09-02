@@ -16,7 +16,7 @@ If you don't want to use flake, you can directly import [`package-set.nix`](./ni
 
 A [justfile](./justfile) is also provided, you can use it to generate `<package>.cabal` or `package.nix` for all packages.
 
-## Deployment
+## Initialization
 
 ### Initialize the Flake
 
@@ -50,6 +50,8 @@ You may need to replace the following placeholder:
 - `example-lib`: An example Haskell package consists of a library and a test suite.
 - `example-app`: An example Haskell package consists of an executable, which depends on `example-lib`.
 
+You can add arbitrary Haskell packages in the `hs-packages` directory.
+
 ### Pin Dependencies for Non-Nix Users
 
 Since Nix manages Haskell dependencies, non-Nix users may not known the these dependencies' exact versions. To ensure reproducibility, run the following commands to pin all dependencies:
@@ -59,3 +61,31 @@ cabal v2-freeze
 ```
 
 It generates `cabal.project.freeze` in the project root. Make sure to check it into your version control system.
+
+## Usage
+
+### Generate Cabal Files
+
+```sh
+just hpack
+```
+
+### Generate `package.nix`
+
+```sh
+just cabal2nix
+```
+
+### Build Executable for Production
+
+With flake:
+
+```sh
+nix build .#legacyPackages.<system>.example-app
+```
+
+Without flake:
+
+```sh
+nix-build -A legacyPackages.<system>.example-app
+```

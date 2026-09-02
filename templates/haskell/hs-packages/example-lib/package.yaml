@@ -1,15 +1,12 @@
+_common: !include ../../package.common.yaml
+<<: *common
+<<: *flags
+
 name: example-lib
 version: 0.1.0.0
 
-language: GHC2024
 dependencies:
   - base
-
-flags:
-  in-nix-shell:
-    description: Build tools are provided by the Nix development shell.
-    default: false
-    manual: true
 
 library:
   source-dirs: src
@@ -24,6 +21,7 @@ tests:
       - tasty
       - tasty-hedgehog
       - tasty-hunit
+    ghc-options: *test-ghc-options
     when:
       - condition: "!flag(in-nix-shell)"
         build-tools:
