@@ -10,6 +10,9 @@
     - LambdaCase
     - MultiWayIf
     - NamedFieldPuns
+    - RecordWildCards
+    - DisambiguateRecordFields
+    - DuplicateRecordFields
     - TupleSections
     - DeriveFoldable
     - DeriveFunctor
@@ -20,6 +23,7 @@
     - GeneralizedNewtypeDeriving
     - StandaloneDeriving
     - BangPatterns
+    - StrictData
     - KindSignatures
     - TypeOperators
     - OverloadedStrings
@@ -29,6 +33,10 @@
     - ApplicativeDo
     - DefaultSignatures
     - PatternSynonyms
+    - TemplateHaskell
+    - OverloadedLabels
+    - UndecidableInstances
+    - AllowAmbiguousTypes
   ghc-options:
     - -Wall
     - -Wcompat
@@ -36,6 +44,9 @@
     - -Widentities
     - -Wredundant-constraints
     - -Werror=missing-home-modules
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
 
 - &test-ghc-options
   - -Wno-incomplete-uni-patterns
